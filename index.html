@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 	<head>
 		<meta charset="utf-8">
-		<title>Title</title>
+		<title>Maximum Dice</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="styles.css">
 		<script src="processing.js"></script>
 	</head>
 	<body>
 		<header>
-			<h1>Headline</h1>
+			<h1>Dice</h1>
 		</header>
 			<section id="content">
 				<canvas id="Dice" data-processing-sources="Dice.pde">
 				</canvas>
 		    </section>
 	    <footer>
-		    Footer
+		    <p>The size of the canvas here is 1024 x 768. As many complete dice as possible are rendered onscreen. Roll all of them by clicking the screen! The total of all of them is displayed at the bottom of the canvas.</p>
+		    <p>Press the A key to increase the size of the dice, and the S key to decrease the size of the dice. The D key resets the size of the dice to 20. The number of dice onscreen is displayed at the bottom of the canvas, to the right of the total dots.</p>
+		    <p>The maximum number of legible dice is 7838 with each die at size 10x10. This number excludes the dice covered by the displayed text.</p>
 	    </footer>
 	</body>
 </html>

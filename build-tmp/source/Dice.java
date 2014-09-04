@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Dice extends PApplet {
+
 Die ichi;
 
 int total = 0;
@@ -6,13 +22,13 @@ int x, y;
 int dieSize = 20;
 int extra;
 
-void setup()
+public void setup()
 {
   size(1024,768);
   noLoop();
 }
 
-void draw()
+public void draw()
 {
   background(100,245,150);
   
@@ -31,11 +47,11 @@ void draw()
     extra = 0;
   }
   
-  for(int i = 0; i < int(768/dieSize)+extra; i++)
+  for(int i = 0; i < PApplet.parseInt(768/dieSize)+extra; i++)
   {
     x = -1;
     
-    for(int c = 0; c < int(1024/dieSize); c++)
+    for(int c = 0; c < PApplet.parseInt(1024/dieSize); c++)
     {
       ichi = new Die(x,y,dieSize);
       
@@ -54,12 +70,12 @@ void draw()
   text("Total dice: " + totalDice,500,768);
 }
 
-void mousePressed()
+public void mousePressed()
 {
   redraw();
 }
 
-void keyPressed()
+public void keyPressed()
 {
   //increases size of die by 10 as long as the die isn't already at the maximum size of 760
   if(key == 'a')
@@ -111,13 +127,13 @@ class Die //models one single die cube
     dot = squareSize/10;
   }
   
-  void roll()
+  public void roll()
   {
     roll = (int)(Math.random()*6)+1;
     total = total + roll;
   }
   
-  void show()
+  public void show()
   {
     strokeWeight(1);
     stroke(0,0,0);
@@ -137,22 +153,31 @@ class Die //models one single die cube
     if(roll == 2 || roll == 3 || roll == 4 || roll == 5 || roll == 6)
     //show top right dot and lower left dot
     {
-      ellipse(xPos + (squareSize * 0.75), yPos + (squareSize * 0.25), dot, dot);      
-      ellipse(xPos + (squareSize * 0.25), yPos + (squareSize * 0.75), dot, dot);
+      ellipse(xPos + (squareSize * 0.75f), yPos + (squareSize * 0.25f), dot, dot);      
+      ellipse(xPos + (squareSize * 0.25f), yPos + (squareSize * 0.75f), dot, dot);
     }
     
     if(roll == 4 || roll == 5 || roll == 6)
     //show top left dot and lower right dot
     {
-      ellipse(xPos + (squareSize * 0.25), yPos + (squareSize * 0.25), dot, dot);      
-      ellipse(xPos + (squareSize * 0.75), yPos + (squareSize * 0.75), dot, dot);
+      ellipse(xPos + (squareSize * 0.25f), yPos + (squareSize * 0.25f), dot, dot);      
+      ellipse(xPos + (squareSize * 0.75f), yPos + (squareSize * 0.75f), dot, dot);
     }
     
     if(roll == 6)
     //show center side dots
     {
-      ellipse(xPos + (squareSize * 0.25), yPos + (squareSize * 0.5), dot, dot);      
-      ellipse(xPos + (squareSize * 0.75), yPos + (squareSize * 0.5), dot, dot);
+      ellipse(xPos + (squareSize * 0.25f), yPos + (squareSize * 0.5f), dot, dot);      
+      ellipse(xPos + (squareSize * 0.75f), yPos + (squareSize * 0.5f), dot, dot);
+    }
+  }
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Dice" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
     }
   }
 }
